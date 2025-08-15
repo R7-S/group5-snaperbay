@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import DarkModeToggle from "./ui/DarkModeToggle";
-import { Home, Info } from "lucide-react";
-
+import { Home, Info,Mail} from "lucide-react";
+  
 export default function Navbar() {
   const location = useLocation();
 
@@ -30,6 +30,10 @@ export default function Navbar() {
 
         <Link to="/about" className={navLinkClasses("/about")}>
           <Info size={18} /> About
+        </Link>
+
+        <Link to="/Contact" className={navLinkClasses("/Contacts")}>
+          <Mail size={18} /> Contact US
         </Link>
       </div>
 
