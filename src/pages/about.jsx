@@ -46,7 +46,7 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-start px-6 py-12 text-center bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-[80vh] flex flex-col items-center justify-start px-6 py-12 text-center bg-white dark:bg-black">
 
       {/* Title */}
       <motion.h1 className="text-4xl font-bold mb-12 text-gray-800 dark:text-white" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
