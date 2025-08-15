@@ -4,7 +4,7 @@ const BASE_URL = "https://pixabay.com/api/";
 export async function fetchPopularImages() {
   try {
     const res = await fetch(
-      `${BASE_URL}?key=${API_KEY}&image_type=photo&order=popular&per_page=12`
+      `${BASE_URL}?key=${API_KEY}&image_type=photo&order=popular&per_page=24`
     );
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     const data = await res.json();
