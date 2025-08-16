@@ -1,3 +1,4 @@
+// Contributors: Bhumil Parate(8994642)
 // src/components/ui/Lightbox.jsx
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -5,14 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Lightbox({ open, onClose, children, layoutId }) {
   const dialogRef = useRef(null);
 
-  
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
       if (e.key === "Escape") onClose?.();
     };
     window.addEventListener("keydown", onKey);
-    
+
     dialogRef.current?.focus();
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);

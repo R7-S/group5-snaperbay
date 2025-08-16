@@ -1,5 +1,6 @@
 // src/components/ui/ReadableSpot.jsx
-// Contributors: <Your Name>
+// Contributors: Bhumil Parate(8994642)
+
 import React from "react";
 
 export default function ReadableSpot({

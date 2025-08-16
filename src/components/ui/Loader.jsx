@@ -1,5 +1,6 @@
 // src/components/ui/Loader.jsx
-// Contributors: <Your Name>
+// Contributors: Bhumil Parate(8994642)
+
 const SIZE_MAP = {
   xs: "h-3 w-3",
   sm: "h-4 w-4",

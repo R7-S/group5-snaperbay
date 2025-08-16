@@ -1,5 +1,5 @@
 // src/components/Footer.jsx
-// Contributors: <Your Name> (glassy footer, attached glow, responsive grid)
+// Contributors: Bhumil Parate(8994642)
 
 import React from "react";
 import { Link } from "react-router-dom";

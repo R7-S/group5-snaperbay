@@ -1,3 +1,4 @@
+// Contributors: Bhumil Parate(8994642)
 import { useState } from "react";
 
 export default function BlurImage({

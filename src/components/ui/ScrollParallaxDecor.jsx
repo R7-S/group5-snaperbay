@@ -1,5 +1,6 @@
 // src/components/ui/ScrollParallaxDecor.jsx
-// Contributors: <Your Name>
+// Contributors: Bhumil Parate(8994642)
+
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function ScrollParallaxDecor({ className = "" }) {
@@ -8,7 +9,10 @@ export default function ScrollParallaxDecor({ className = "" }) {
   const y2 = useTransform(scrollY, [0, 600], [0, -50]);
 
   const Blob = ({ style, grad, size, pos }) => (
-    <motion.div style={style} className={`absolute blur-3xl opacity-35 ${size} ${pos} ${grad} rounded-full`} />
+    <motion.div
+      style={style}
+      className={`absolute blur-3xl opacity-35 ${size} ${pos} ${grad} rounded-full`}
+    />
   );
 
   return (

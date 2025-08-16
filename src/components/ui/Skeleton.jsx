@@ -1,5 +1,5 @@
 // src/components/ui/Skeleton.jsx
-// Contributors: <Your Name>
+// Contributors: Bhumil Parate(8994642)
 export default function Skeleton({ className = "", ...props }) {
   return (
     <div

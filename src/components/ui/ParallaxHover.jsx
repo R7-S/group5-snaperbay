@@ -1,3 +1,4 @@
+// Contributors: Bhumil Parate(8994642)
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function ParallaxHover({

@@ -1,3 +1,4 @@
+// Contributors: Bhumil Parate(8994642)
 // src/components/CategoryChips.jsx
 export default function CategoryChips({ items = [], onPick }) {
   return (
@@ -12,7 +13,6 @@ export default function CategoryChips({ items = [], onPick }) {
                      hover:-translate-y-[1px] transition transform-gpu"
           aria-label={`Search ${c.label}`}
         >
-          
           <span className="text-lg leading-none">{c.icon ?? c.emoji}</span>
           <span>{c.label}</span>
         </button>

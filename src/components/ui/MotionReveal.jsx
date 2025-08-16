@@ -1,3 +1,4 @@
+// Contributors: Bhumil Parate(8994642)
 // src/components/ui/MotionReveal.jsx
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -10,7 +11,7 @@ export default function MotionReveal({
   once = true,
   amount = 0.15,
   margin = "-8% 0px",
-  forceOnMount = false, 
+  forceOnMount = false,
 }) {
   const M = motion[as] || motion.div;
   const ref = useRef(null);
@@ -19,7 +20,6 @@ export default function MotionReveal({
   const [show, setShow] = useState(false);
   const [reduced, setReduced] = useState(false);
 
-  
   useEffect(() => {
     try {
       const mq = window.matchMedia?.("(prefers-reduced-motion: reduce)");
@@ -27,12 +27,10 @@ export default function MotionReveal({
     } catch {}
   }, []);
 
- 
   useEffect(() => {
     if (inView) setShow(true);
   }, [inView]);
 
-  
   useEffect(() => {
     if (!forceOnMount) return;
     setShow(true);

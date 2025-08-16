@@ -1,4 +1,5 @@
 // src/components/ui/AnimatedTabs.jsx
+// Contributors: Bhumil Parate(8994642) (glassy footer, attached glow, responsive grid)
 import { LayoutGroup, motion } from "framer-motion";
 import { useState } from "react";
 
@@ -27,9 +28,10 @@ export default function AnimatedTabs({ tabs, onChange }) {
               className={`relative pb-1 transition focus-visible:outline-none
                           focus-visible:ring-2 focus-visible:ring-offset-2
                           focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900
-                ${isActive
-                  ? "text-slate-900 dark:text-white"
-                  : "text-slate-500 dark:text-slate-400"
+                ${
+                  isActive
+                    ? "text-slate-900 dark:text-white"
+                    : "text-slate-500 dark:text-slate-400"
                 }`}
             >
               {t.label}

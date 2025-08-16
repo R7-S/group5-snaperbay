@@ -1,3 +1,4 @@
+// Contributors: Bhumil Parate(8994642)
 // src/components/ui/SectionHeading.jsx
 import MotionReveal from "./MotionReveal";
 
@@ -15,9 +16,7 @@ export default function SectionHeading({ title, subtitle, className = "" }) {
 
       {subtitle && (
         <MotionReveal as="div" y={8} delay={0.05}>
-          <p className="mt-2 text-slate-700 dark:text-slate-300">
-            {subtitle}
-          </p>
+          <p className="mt-2 text-slate-700 dark:text-slate-300">{subtitle}</p>
         </MotionReveal>
       )}
     </div>

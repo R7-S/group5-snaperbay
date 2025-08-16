@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-// Contributors: Your Name (nav + dark mode a11y, arcade HUD styling)
+// Contributors: Bhumil Parate(8994642) (nav + dark mode a11y, arcade HUD styling)
 import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
