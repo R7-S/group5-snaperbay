@@ -10,13 +10,13 @@ import { AnimatePresence } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
 import ImageDetail from "./pages/images/[id]";
-import NotFounds from "./pages/NotFounds";
 import PageTransition from "./components/ui/PageTransition";
 import TopProgressBar from "./components/ui/TopProgressBar";
 import FramerLikeBackground from "./components/ui/FramerLikeBackground";
+import About from "./pages/about"; // ✅ case-correct
+import NotFounds from "./pages/NotFounds";
+import Contact from "./pages/Contact"; // ✅ import OK
 
 function AnimatedRoutes() {
   const location = useLocation();

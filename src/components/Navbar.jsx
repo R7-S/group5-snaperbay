@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import DarkModeToggle from "./ui/DarkModeToggle";
-
+import { Home, Info,Mail} from "lucide-react";
+  
 export default function Navbar() {
   const { scrollY } = useScroll();
   const last = useRef(0);
