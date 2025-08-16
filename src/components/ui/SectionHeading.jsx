@@ -5,7 +5,7 @@ export default function SectionHeading({ title, subtitle, className = "" }) {
   return (
     <div className={`text-center ${className}`}>
       <MotionReveal as="h2" y={10}>
-        <ReadableSpot className="z-0" />
+        {/* <ReadableSpot className="z-0" /> */}
         <h2
           className="text-2xl sm:text-3xl font-semibold tracking-tight
                drop-shadow-[0_1px_8px_rgba(0,0,0,0.18)]"

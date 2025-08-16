@@ -297,7 +297,7 @@ export default function Home() {
           title="Browse by category"
           subtitle="Jump straight into what you like"
         />
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center">
           <CategoryChips items={categories} onPick={quickPick} />
         </div>
       </section>
