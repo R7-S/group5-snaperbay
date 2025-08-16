@@ -204,7 +204,8 @@ export default function Contact() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Contact <span className="text-blue-500">SnaperBay</span>
+        Contact <span className="text-blue-500 dark:text-white">SnaperBay</span>
+
       </motion.h1>
       <p className="text-gray-600 dark:text-gray-300 mb-10 text-center max-w-2xl">
         Questions, feedback, or collaborations? Drop us a line—we’d love to hear

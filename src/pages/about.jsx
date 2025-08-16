@@ -1,4 +1,4 @@
-// Contributors: Vasim Ahmed Choudhary, 8915584 
+// Contributors: Vasim Ahmed Choudhary, 8915584
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -103,7 +103,8 @@ export default function About() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        About <span className="text-blue-500">SnaperBay</span>
+        About <span className="text-blue-500 dark:text-white">SnaperBay</span>
+
       </motion.h1>
 
       <div className="flex flex-col md:flex-row items-center gap-12 max-w-6xl mb-12">
@@ -113,26 +114,28 @@ export default function About() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl font-semibold mb-2 text-blue-500">
+          <h2 className="text-2xl font-semibold mb-2 text-blue-500 dark:text-white">
             Our Mission
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">
+          <p className="text-black dark:text-white mb-4">
             SnaperBay is a curated platform for discovering stunning photography
             from talented creators worldwide. We aim to inspire creativity and
             provide a space where photographers and enthusiasts can connect.
           </p>
-          <h2 className="text-2xl font-semibold mb-2 text-blue-500">
+
+          <h2 className="text-2xl font-semibold mb-2 text-blue-500 dark:text-white">
             Explore & Share
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">
+          <p className="text-black dark:text-white mb-4">
             Explore trending photos, diverse categories, and unique visuals that
             spark your imagination. Save your favorites, share with friends, and
             use images for personal projects with ease.
           </p>
-          <h2 className="text-2xl font-semibold mb-2 text-blue-500">
+
+          <h2 className="text-2xl font-semibold mb-2 text-blue-500 dark:text-white">
             Community & Inspiration
           </h2>
-          <p className="text-gray-700 dark:text-gray-300">
+          <p className="text-black dark:text-white">
             Join a global community of photography lovers. Learn, share, and
             celebrate creative excellence while discovering new perspectives
             from photographers around the world.
@@ -181,8 +184,8 @@ export default function About() {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        <div className="flex-1 text-left text-gray-700 dark:text-gray-300">
-          <h2 className="text-2xl font-semibold mb-3 text-blue-500">
+        <div className="flex-1 text-left text-black dark:text-white">
+          <h2 className="text-2xl font-semibold mb-3 text-blue-500 dark:text-white">
             Contact Us
           </h2>
           <p className="mb-2">Email: info@SnaperBay.com</p>
@@ -222,6 +225,7 @@ export default function About() {
             </a>
           </div>
         </div>
+
         <div className="flex-1">
           <iframe
             title="Conestoga College Doon Campus Map"
