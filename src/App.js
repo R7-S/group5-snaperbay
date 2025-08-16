@@ -1,5 +1,5 @@
-// src/App.js
-// Contributors: <Your Name> (routing clean-up, animations)
+// Contributors: Rahul Sasidharan Nair ,8992754
+//Contributors: Bhumil Parate , 8994642
 
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";

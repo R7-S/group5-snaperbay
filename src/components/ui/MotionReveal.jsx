@@ -1,5 +1,4 @@
 // Contributors: Bhumil Parate(8994642)
-// src/components/ui/MotionReveal.jsx
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 

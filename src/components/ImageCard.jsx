@@ -1,3 +1,4 @@
+//Contributors: Bhumil Parate , 8994642
 import { motion } from "framer-motion";
 
 export default function ImageCard({ src, alt, footer, onClick }) {

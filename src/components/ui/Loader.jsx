@@ -1,4 +1,3 @@
-// src/components/ui/Loader.jsx
 // Contributors: Bhumil Parate(8994642)
 
 const SIZE_MAP = {

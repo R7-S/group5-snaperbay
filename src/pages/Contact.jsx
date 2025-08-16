@@ -1,4 +1,5 @@
-// src/pages/Contact.jsx
+//Contributors: Manthan Maheshkumar Parekh, 8995878
+
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -105,7 +106,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus({ type: "", message: "" });
 
-    // Honeypot
+    
     if (form.nickname) {
       setStatus({ type: "error", message: "Submission blocked." });
       return;
@@ -340,7 +341,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           noValidate
         >
-          {/* Honeypot */}
+         
           <input
             type="text"
             name="nickname"
@@ -611,7 +612,7 @@ export default function Contact() {
         </motion.form>
       </div>
 
-      {/* Summary Modal — Modern, centered, 70% & scrollable */}
+      
       <AnimatePresence>
         {showSummary && (
           <motion.div
@@ -621,7 +622,7 @@ export default function Contact() {
             exit={{ opacity: 0 }}
             aria-hidden={!showSummary}
           >
-            {/* Backdrop (click → close & home) */}
+            
             <motion.div
               className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
               initial={{ opacity: 0 }}
@@ -630,7 +631,7 @@ export default function Contact() {
               onClick={() => closeAndGoHome(false)}
             />
 
-            {/* Dialog wrapper (70% width & height, centered) */}
+            
             <motion.div
               role="dialog"
               aria-modal="true"
@@ -645,10 +646,10 @@ export default function Contact() {
               }}
               exit={{ opacity: 0, y: 8, scale: 0.98 }}
             >
-              {/* Header with gradient */}
+              
               <div className="relative">
                 <div className="h-24 w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600" />
-                {/* Badge */}
+                
                 <motion.div
                   className="absolute -bottom-7 left-6 inline-flex items-center gap-2 rounded-full bg-white/90 dark:bg-neutral-900/90 border border-neutral-200/70 dark:border-neutral-800/70 px-4 py-2 shadow-lg"
                   initial={{ opacity: 0, y: 10 }}
@@ -660,7 +661,7 @@ export default function Contact() {
                   </span>
                 </motion.div>
 
-                {/* Close (X) */}
+                
                 <button
                   ref={modalCloseBtnRef}
                   onClick={() => closeAndGoHome(false)}
@@ -671,7 +672,7 @@ export default function Contact() {
                 </button>
               </div>
 
-              {/* Scrollable Body (max-height) */}
+              
               <div className="px-6 pt-12 pb-24 h-[calc(70vh-4rem)] overflow-y-auto">
                 <motion.div
                   className="grid gap-4"
@@ -712,7 +713,7 @@ export default function Contact() {
                     variants={itemVariants}
                   />
 
-                  {/* Topic Details */}
+                  
                   <motion.div
                     variants={itemVariants}
                     className="rounded-2xl border border-neutral-200 dark:border-neutral-800 p-4 bg-white/70 dark:bg-neutral-900/70"
@@ -762,14 +763,14 @@ export default function Contact() {
               {/* Sticky Footer */}
               <div className="absolute bottom-0 left-0 right-0 bg-white/85 dark:bg-neutral-900/85 border-t border-neutral-200/70 dark:border-neutral-800/70 px-6 py-4 flex justify-end gap-2 backdrop-blur">
                 <button
-                  onClick={() => closeAndGoHome(false)} // Close → home
+                  onClick={() => closeAndGoHome(false)} 
                   className="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition text-sm font-medium"
                 >
                   <X size={16} />
                   Close
                 </button>
                 <button
-                  onClick={() => closeAndGoHome(true)} // Done → reset + home
+                  onClick={() => closeAndGoHome(true)} 
                   className="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white px-4 py-2 hover:bg-blue-700 transition text-sm font-medium shadow"
                 >
                   <FiCheck />
@@ -784,7 +785,7 @@ export default function Contact() {
   );
 }
 
-/** Icon-led summary row */
+
 function SummaryRow({ icon, label, value, variants }) {
   return (
     <motion.div

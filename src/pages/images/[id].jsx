@@ -1,4 +1,4 @@
-// src/pages/images/[id].jsx
+//Contributors: Bhumil Parate , 8994642
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";

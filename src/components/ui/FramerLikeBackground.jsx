@@ -31,17 +31,17 @@ function useDarkModeStatus() {
     const mql = window.matchMedia?.("(prefers-color-scheme: dark)");
     const update = () => setIsDark(getTheme() === "dark");
 
-    // watch <html class="dark"> changes
+    
     const obs = new MutationObserver(update);
     obs.observe(root, { attributes: true, attributeFilter: ["class"] });
 
-    // watch localStorage changes from other tabs
+   
     const onStorage = (e) => {
       if (e.key === "theme") update();
     };
     window.addEventListener("storage", onStorage);
 
-    // watch system theme changes as a fallback
+    
     try {
       mql?.addEventListener?.("change", update);
     } catch {
@@ -115,7 +115,7 @@ export default function FramerLikeBackground({
       };
     }
 
-    // LIGHT MODE — no black anywhere
+    
     return {
       canvas: "transparent",
       vignette:

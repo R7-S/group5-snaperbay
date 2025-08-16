@@ -1,5 +1,4 @@
-// src/components/ui/AnimatedTabs.jsx
-// Contributors: Bhumil Parate(8994642) (glassy footer, attached glow, responsive grid)
+// Contributors: Bhumil Parate(8994642) 
 import { LayoutGroup, motion } from "framer-motion";
 import { useState } from "react";
 

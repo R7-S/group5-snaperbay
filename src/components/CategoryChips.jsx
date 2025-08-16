@@ -1,5 +1,4 @@
 // Contributors: Bhumil Parate(8994642)
-// src/components/CategoryChips.jsx
 export default function CategoryChips({ items = [], onPick }) {
   return (
     <div className="flex flex-wrap gap-2">

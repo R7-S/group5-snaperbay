@@ -1,4 +1,4 @@
-// src/components/Footer.jsx
+
 // Contributors: Bhumil Parate(8994642)
 
 import React from "react";

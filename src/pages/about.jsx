@@ -1,5 +1,4 @@
-// src/pages/about.jsx
-// Contributors: <Your Name> (About page, slideshow, API refactor)
+// Contributors: Vasim Ahmed Choudhary, 8915584 
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";

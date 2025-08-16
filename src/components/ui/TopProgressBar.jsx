@@ -1,4 +1,3 @@
-// src/components/ui/TopProgressBar.jsx
 // Contributors: Bhumil Parate(8994642)
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 

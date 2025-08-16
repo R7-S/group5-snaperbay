@@ -1,3 +1,5 @@
+// Contributors: Rahul Sasidharan Nair ,8992754
+
 const BASE_URL = "https://pixabay.com/api/";
 const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY || "";
 

@@ -1,5 +1,4 @@
 // Contributors: Bhumil Parate(8994642)
-// src/components/FeatureCard.jsx
 import React from "react";
 
 export default function FeatureCard({ icon, title, desc }) {

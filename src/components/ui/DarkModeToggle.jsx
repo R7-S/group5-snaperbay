@@ -1,5 +1,4 @@
 // Contributors: Bhumil Parate(8994642)
-// src/components/ui/DarkModeToggle.jsx
 import React, { useEffect, useState } from "react";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 

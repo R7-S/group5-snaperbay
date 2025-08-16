@@ -1,5 +1,4 @@
 // Contributors: Bhumil Parate(8994642)
-// src/components/ui/SectionHeading.jsx
 import MotionReveal from "./MotionReveal";
 
 export default function SectionHeading({ title, subtitle, className = "" }) {

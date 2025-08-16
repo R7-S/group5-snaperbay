@@ -1,3 +1,4 @@
+// Contributors: Rahul Sasidharan Nair, 8992754
 module.exports = {
   darkMode: 'class',
   content: [

@@ -1,4 +1,3 @@
-// src/components/ui/ScrollParallaxDecor.jsx
 // Contributors: Bhumil Parate(8994642)
 
 import { motion, useScroll, useTransform } from "framer-motion";

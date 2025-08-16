@@ -1,5 +1,4 @@
 // Contributors: Bhumil Parate(8994642)
-// src/components/ui/Lightbox.jsx
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 

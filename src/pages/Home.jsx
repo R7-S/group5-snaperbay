@@ -1,4 +1,5 @@
-// Contributors: <Your Name> (live search, paginated grid, lightbox)
+// Contributors: Rahul Sasidharan Nair ,8992754
+//Contributors: Bhumil Parate , 8994642
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
