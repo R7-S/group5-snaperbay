@@ -5,7 +5,7 @@ export default function BlurImage({
   src,
   alt,
   className = "",
-  fit = "cover", 
+  fit = "cover",
   showLoader = true,
 }) {
   const [loaded, setLoaded] = useState(false);
@@ -13,7 +13,6 @@ export default function BlurImage({
 
   return (
     <div className={`relative ${className}`}>
-      {/* low-res */}
       <img
         src={lowSrc}
         alt={alt}
@@ -21,7 +20,6 @@ export default function BlurImage({
           loaded ? "opacity-0" : "opacity-100 blur-md"
         } transition`}
       />
-      {/* full-res */}
       <img
         src={src}
         alt={alt}
@@ -31,7 +29,6 @@ export default function BlurImage({
         } transition duration-500`}
       />
 
-      {/* Centered spinner while loading */}
       {showLoader && !loaded && (
         <div className="absolute inset-0 grid place-items-center pointer-events-none">
           <span className="h-10 w-10 animate-spin rounded-full border-2 border-slate-400/80 dark:border-slate-300/70 border-t-transparent" />

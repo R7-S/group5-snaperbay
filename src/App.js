@@ -14,6 +14,7 @@ import FramerLikeBackground from "./components/ui/FramerLikeBackground";
 import About from "./pages/about";
 import NotFounds from "./pages/NotFounds";
 import Contact from "./pages/Contact";
+import Footer from "./components/Footer";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -51,16 +52,22 @@ function AnimatedRoutes() {
 }
 
 function AppShell() {
-  const location = useLocation();
-  const isHome = location.pathname === "/";
-
   return (
     <div className="relative isolate bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-      {isHome && <FramerLikeBackground variant="auto" intensity={0.8} blur={85} />}
+      {/* Light theme background */}
+      <div className="dark:hidden">
+        <FramerLikeBackground variant="light" intensity={0.65} blur={85} />
+      </div>
+
+      {/* Dark theme background */}
+      <div className="hidden dark:block">
+        <FramerLikeBackground variant="dark" intensity={0.9} blur={85} />
+      </div>
 
       <div className="relative z-10">
         <Navbar />
         <AnimatedRoutes />
+        <Footer />
         <TopProgressBar />
       </div>
     </div>

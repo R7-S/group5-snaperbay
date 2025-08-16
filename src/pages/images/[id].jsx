@@ -24,9 +24,7 @@ import ScrollParallaxDecor from "../../components/ui/ScrollParallaxDecor";
 import ImageCard from "../../components/ImageCard";
 import Skeleton from "../../components/ui/Skeleton";
 
-
 const fmt = (n) => new Intl.NumberFormat().format(n || 0);
-
 
 function CountUp({ value, duration = 0.6 }) {
   const [display, setDisplay] = useState(0);
@@ -37,7 +35,7 @@ function CountUp({ value, duration = 0.6 }) {
     let raf;
     const tick = (t) => {
       const p = Math.min(1, (t - start) / (duration * 1000));
-      const eased = 1 - Math.pow(1 - p, 3); 
+      const eased = 1 - Math.pow(1 - p, 3);
       setDisplay(Math.round(from + (to - from) * eased));
       if (p < 1) raf = requestAnimationFrame(tick);
     };
@@ -46,7 +44,6 @@ function CountUp({ value, duration = 0.6 }) {
   }, [value, duration]);
   return <span aria-live="polite">{fmt(display)}</span>;
 }
-
 
 function Stat({ icon, label, value }) {
   return (
@@ -76,16 +73,13 @@ export default function ImageDetail() {
   const [copyHint, setCopyHint] = useState("Copy link");
   const [shareHint, setShareHint] = useState("Share");
 
-  
   const [activeTab, setActiveTab] = useState("info");
 
-  
   const [related, setRelated] = useState([]);
   const [authorPics, setAuthorPics] = useState([]);
   const [relLoading, setRelLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
 
- 
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -97,25 +91,36 @@ export default function ImageDetail() {
     };
   }, [id]);
 
-  
   useEffect(() => {
     if (!image) return;
+
     const tagsArr = (image.tags || "")
       .split(",")
       .map((t) => t.trim())
       .filter(Boolean);
 
-    const tagQuery = tagsArr[0] || ""; 
+    const tagQuery = tagsArr[0] || "";
     const authorQuery = (image.user || "").toString();
 
     let mounted = true;
+    const acRelated = new AbortController();
+    const acAuthor = new AbortController();
 
     (async () => {
       try {
         setRelLoading(true);
-        const r = tagQuery ? await fetchImagesByQuery(tagQuery) : [];
-        if (mounted)
-          setRelated((r || []).filter((x) => x.id !== image.id).slice(0, 9));
+        if (!tagQuery) {
+          if (mounted) setRelated([]);
+          return;
+        }
+        const { hits: rHits = [] } = await fetchImagesByQuery(
+          tagQuery,
+          { page: 1, perPage: 24 },
+          acRelated.signal
+        );
+        if (mounted) {
+          setRelated(rHits.filter((x) => x.id !== image.id).slice(0, 9));
+        }
       } finally {
         if (mounted) setRelLoading(false);
       }
@@ -124,9 +129,18 @@ export default function ImageDetail() {
     (async () => {
       try {
         setAuthLoading(true);
-        const a = authorQuery ? await fetchImagesByQuery(authorQuery) : [];
-        if (mounted)
-          setAuthorPics((a || []).filter((x) => x.id !== image.id).slice(0, 9));
+        if (!authorQuery) {
+          if (mounted) setAuthorPics([]);
+          return;
+        }
+        const { hits: aHits = [] } = await fetchImagesByQuery(
+          authorQuery,
+          { page: 1, perPage: 24 },
+          acAuthor.signal
+        );
+        if (mounted) {
+          setAuthorPics(aHits.filter((x) => x.id !== image.id).slice(0, 9));
+        }
       } finally {
         if (mounted) setAuthLoading(false);
       }
@@ -134,6 +148,8 @@ export default function ImageDetail() {
 
     return () => {
       mounted = false;
+      acRelated.abort();
+      acAuthor.abort();
     };
   }, [image]);
 
@@ -183,9 +199,7 @@ export default function ImageDetail() {
       }
       setShareHint("Shared!");
       setTimeout(() => setShareHint("Share"), 1200);
-    } catch {
-      
-    }
+    } catch {}
   };
 
   const handleDownload = () => {
@@ -199,10 +213,8 @@ export default function ImageDetail() {
 
   return (
     <PageTransition className="relative px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-      
       <ScrollParallaxDecor />
 
-      
       <div className="mb-4 flex items-center justify-between gap-3">
         <button
           onClick={() => history.goBack()}
@@ -216,13 +228,25 @@ export default function ImageDetail() {
         </button>
 
         <div className="flex items-center gap-2">
-          <Button onClick={handleCopy} className="rounded-full" aria-label="Copy link">
+          <Button
+            onClick={handleCopy}
+            className="rounded-full"
+            aria-label="Copy link"
+          >
             <IoLinkOutline className="mr-2" /> {copyHint}
           </Button>
-          <Button onClick={handleShare} className="rounded-full" aria-label="Share">
+          <Button
+            onClick={handleShare}
+            className="rounded-full"
+            aria-label="Share"
+          >
             <IoShareSocialOutline className="mr-2" /> {shareHint}
           </Button>
-          <Button onClick={handleDownload} className="rounded-full" aria-label="Download image">
+          <Button
+            onClick={handleDownload}
+            className="rounded-full"
+            aria-label="Download image"
+          >
             <IoDownloadOutline className="mr-2" /> Download
           </Button>
           <a
@@ -386,8 +410,8 @@ export default function ImageDetail() {
               >
                 <p>
                   Images are served from Pixabay. Please review the Pixabay
-                  license and usage guidelines on the image page for
-                  up-to-date terms.
+                  license and usage guidelines on the image page for up-to-date
+                  terms.
                 </p>
                 <a
                   href={detailURL}
@@ -405,7 +429,6 @@ export default function ImageDetail() {
         </motion.aside>
       </div>
 
-      
       <section className="mt-10">
         <SectionHeading
           title="More like this"

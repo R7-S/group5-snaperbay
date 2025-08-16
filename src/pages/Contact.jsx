@@ -2,11 +2,32 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin,
-  Loader2, Send, X, CheckCircle2, MessageSquare, CalendarClock
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Loader2,
+  Send,
+  X,
+  CheckCircle2,
+  MessageSquare,
+  CalendarClock,
 } from "lucide-react";
-import { useHistory } from "react-router-dom"; 
-import { FiCheck, FiX, FiMail, FiPhone, FiTag, FiMapPin, FiPaperclip, FiUser, FiRadio } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
+import {
+  FiCheck,
+  FiX,
+  FiMail,
+  FiPhone,
+  FiTag,
+  FiMapPin,
+  FiPaperclip,
+  FiUser,
+  FiRadio,
+} from "react-icons/fi";
 
 const FORMSPREE_ENDPOINT = process.env.REACT_APP_FORMSPREE_ENDPOINT || "";
 
@@ -25,7 +46,7 @@ export default function Contact() {
     bestTime: "Anytime",
     newsletter: false,
     files: [],
-    
+
     nickname: "",
   });
 
@@ -39,7 +60,8 @@ export default function Contact() {
   const topicPlaceholders = {
     General: "Please describe your general inquiry...",
     Partnership: "Tell us about your partnership idea (goals, scope, links)...",
-    Support: "Explain the issue or assistance you need (device, steps tried)...",
+    Support:
+      "Explain the issue or assistance you need (device, steps tried)...",
     Feedback: "Share your feedback or suggestions (what to improve, why)...",
     Copyright: "Describe the content and your concern (links, details)...",
   };
@@ -101,12 +123,12 @@ export default function Contact() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...form,
-            files: form.files.map((f) => f.name), 
+            files: form.files.map((f) => f.name),
           }),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       } else {
-        await new Promise((r) => setTimeout(r, 800)); 
+        await new Promise((r) => setTimeout(r, 800));
       }
 
       setStatus({
@@ -126,7 +148,6 @@ export default function Contact() {
     }
   };
 
-  
   useEffect(() => {
     if (showSummary && modalCloseBtnRef.current) {
       modalCloseBtnRef.current.focus();
@@ -155,14 +176,12 @@ export default function Contact() {
     setStatus({ type: "", message: "" });
   };
 
-  
   const closeAndGoHome = (reset = false) => {
     setShowSummary(false);
     if (reset) clearForm();
-    history.push("/"); 
+    history.push("/");
   };
 
- 
   const containerVariants = {
     hidden: {},
     show: {
@@ -176,7 +195,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-start px-6 py-12 bg-white dark:bg-black">
+    <div className="min-h-[80vh] flex flex-col items-center justify-start px-6 py-12 bg-transparent">
       {/* Title */}
       <motion.h1
         className="text-4xl font-bold mb-3 text-gray-800 dark:text-white text-center"
@@ -187,7 +206,8 @@ export default function Contact() {
         Contact <span className="text-blue-500">SnaperBay</span>
       </motion.h1>
       <p className="text-gray-600 dark:text-gray-300 mb-10 text-center max-w-2xl">
-        Questions, feedback, or collaborations? Drop us a line—we’d love to hear from you.
+        Questions, feedback, or collaborations? Drop us a line—we’d love to hear
+        from you.
       </p>
 
       {/* Status banner */}
@@ -213,14 +233,19 @@ export default function Contact() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl font-semibold mb-4 text-blue-500">Get in touch</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-blue-500">
+            Get in touch
+          </h2>
 
           <div className="space-y-4 text-gray-700 dark:text-gray-300">
             <div className="flex items-start gap-3">
               <Mail className="mt-1" size={20} />
               <div>
                 <p className="font-medium">Email</p>
-                <a href="mailto:info@SnaperBay.com" className="text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline">
+                <a
+                  href="mailto:info@SnaperBay.com"
+                  className="text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline"
+                >
                   info@SnaperBay.com
                 </a>
               </div>
@@ -230,7 +255,10 @@ export default function Contact() {
               <Phone className="mt-1" size={20} />
               <div>
                 <p className="font-medium">Phone</p>
-                <a href="tel:+11234567890" className="text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline">
+                <a
+                  href="tel:+11234567890"
+                  className="text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline"
+                >
                   +1 (123) 456-7890
                 </a>
               </div>
@@ -243,7 +271,9 @@ export default function Contact() {
                 <p>
                   299 Doon Valley Dr, Kitchener, ON N2G 4M4, Canada
                   <br />
-                  <span className="text-sm opacity-70">(Conestoga College - Doon Campus)</span>
+                  <span className="text-sm opacity-70">
+                    (Conestoga College - Doon Campus)
+                  </span>
                 </p>
               </div>
             </div>
@@ -251,10 +281,38 @@ export default function Contact() {
             <div className="pt-2">
               <p className="font-medium mb-2">Follow us</p>
               <div className="flex gap-4 text-blue-500">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={22} /></a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={22} /></a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><Twitter size={22} /></a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={22} /></a>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={22} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={22} />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter"
+                >
+                  <Twitter size={22} />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={22} />
+                </a>
               </div>
             </div>
           </div>
@@ -283,47 +341,135 @@ export default function Contact() {
           noValidate
         >
           {/* Honeypot */}
-          <input type="text" name="nickname" value={form.nickname} onChange={handleChange} className="hidden" tabIndex={-1} autoComplete="off" />
+          <input
+            type="text"
+            name="nickname"
+            value={form.nickname}
+            onChange={handleChange}
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+          />
 
-          <h2 className="text-2xl font-semibold mb-4 text-blue-500">Send a message</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-blue-500">
+            Send a message
+          </h2>
 
           {/* Row 1 */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="block mb-1 text-sm">Name</label>
-              <input id="name" name="name" value={form.name} onChange={handleChange} className={inputBase} placeholder="Your full name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined}/>
-              {errors.name && <p id="name-error" className="mt-1 text-sm text-red-600">{errors.name}</p>}
+              <label htmlFor="name" className="block mb-1 text-sm">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                className={inputBase}
+                placeholder="Your full name"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
+              />
+              {errors.name && (
+                <p id="name-error" className="mt-1 text-sm text-red-600">
+                  {errors.name}
+                </p>
+              )}
             </div>
             <div>
-              <label htmlFor="email" className="block mb-1 text-sm">Email</label>
-              <input id="email" name="email" type="email" value={form.email} onChange={handleChange} className={inputBase} placeholder="you@example.com" aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined}/>
-              {errors.email && <p id="email-error" className="mt-1 text-sm text-red-600">{errors.email}</p>}
+              <label htmlFor="email" className="block mb-1 text-sm">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                className={inputBase}
+                placeholder="you@example.com"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
+              />
+              {errors.email && (
+                <p id="email-error" className="mt-1 text-sm text-red-600">
+                  {errors.email}
+                </p>
+              )}
             </div>
           </div>
 
           {/* Row 2 */}
           <div className="grid gap-4 sm:grid-cols-2 mt-4">
             <div>
-              <label htmlFor="phone" className="block mb-1 text-sm">Phone (optional)</label>
-              <input id="phone" name="phone" value={form.phone} onChange={handleChange} className={inputBase} placeholder="+1 (555) 123-4567" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-error" : undefined}/>
-              {errors.phone && <p id="phone-error" className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+              <label htmlFor="phone" className="block mb-1 text-sm">
+                Phone (optional)
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                className={inputBase}
+                placeholder="+1 (555) 123-4567"
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? "phone-error" : undefined}
+              />
+              {errors.phone && (
+                <p id="phone-error" className="mt-1 text-sm text-red-600">
+                  {errors.phone}
+                </p>
+              )}
             </div>
             <div>
-              <label htmlFor="country" className="block mb-1 text-sm">Country</label>
-              <input id="country" name="country" value={form.country} onChange={handleChange} className={inputBase} placeholder="Canada" aria-invalid={!!errors.country} aria-describedby={errors.country ? "country-error" : undefined}/>
-              {errors.country && <p id="country-error" className="mt-1 text-sm text-red-600">{errors.country}</p>}
+              <label htmlFor="country" className="block mb-1 text-sm">
+                Country
+              </label>
+              <input
+                id="country"
+                name="country"
+                value={form.country}
+                onChange={handleChange}
+                className={inputBase}
+                placeholder="Canada"
+                aria-invalid={!!errors.country}
+                aria-describedby={errors.country ? "country-error" : undefined}
+              />
+              {errors.country && (
+                <p id="country-error" className="mt-1 text-sm text-red-600">
+                  {errors.country}
+                </p>
+              )}
             </div>
           </div>
 
           {/* Row 3 */}
           <div className="grid gap-4 sm:grid-cols-2 mt-4">
             <div>
-              <label htmlFor="city" className="block mb-1 text-sm">City (optional)</label>
-              <input id="city" name="city" value={form.city} onChange={handleChange} className={inputBase} placeholder="Kitchener"/>
+              <label htmlFor="city" className="block mb-1 text-sm">
+                City (optional)
+              </label>
+              <input
+                id="city"
+                name="city"
+                value={form.city}
+                onChange={handleChange}
+                className={inputBase}
+                placeholder="Kitchener"
+              />
             </div>
             <div>
-              <label htmlFor="topic" className="block mb-1 text-sm">Topic</label>
-              <select id="topic" name="topic" value={form.topic} onChange={handleChange} className={inputBase}>
+              <label htmlFor="topic" className="block mb-1 text-sm">
+                Topic
+              </label>
+              <select
+                id="topic"
+                name="topic"
+                value={form.topic}
+                onChange={handleChange}
+                className={inputBase}
+              >
                 <option>General</option>
                 <option>Partnership</option>
                 <option>Support</option>
@@ -346,7 +492,9 @@ export default function Contact() {
               placeholder={topicPlaceholders[form.topic]}
               className={`${inputBase} h-24`}
               aria-invalid={!!errors.topicDetails}
-              aria-describedby={errors.topicDetails ? "topicDetails-error" : undefined}
+              aria-describedby={
+                errors.topicDetails ? "topicDetails-error" : undefined
+              }
             />
             {errors.topicDetails && (
               <p id="topicDetails-error" className="mt-1 text-sm text-red-600">
@@ -373,12 +521,24 @@ export default function Contact() {
                   </label>
                 ))}
               </div>
-              {errors.contactMethod && <p className="mt-1 text-sm text-red-600">{errors.contactMethod}</p>}
+              {errors.contactMethod && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.contactMethod}
+                </p>
+              )}
             </div>
 
             <div>
-              <label htmlFor="bestTime" className="block mb-1 text-sm">Best Time to Reach</label>
-              <select id="bestTime" name="bestTime" value={form.bestTime} onChange={handleChange} className={inputBase}>
+              <label htmlFor="bestTime" className="block mb-1 text-sm">
+                Best Time to Reach
+              </label>
+              <select
+                id="bestTime"
+                name="bestTime"
+                value={form.bestTime}
+                onChange={handleChange}
+                className={inputBase}
+              >
                 <option>Anytime</option>
                 <option>Morning</option>
                 <option>Afternoon</option>
@@ -390,17 +550,32 @@ export default function Contact() {
           {/* Files + Newsletter */}
           <div className="grid gap-4 sm:grid-cols-2 mt-4">
             <div>
-              <label htmlFor="files" className="block mb-1 text-sm">Attachments (optional)</label>
-              <input id="files" name="files" type="file" multiple onChange={handleChange} className="block w-full text-sm text-gray-600 dark:text-gray-300 file:mr-4 file:py-2 file:px-3 file:rounded-full file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700"/>
+              <label htmlFor="files" className="block mb-1 text-sm">
+                Attachments (optional)
+              </label>
+              <input
+                id="files"
+                name="files"
+                type="file"
+                multiple
+                onChange={handleChange}
+                className="block w-full text-sm text-gray-600 dark:text-gray-300 file:mr-4 file:py-2 file:px-3 file:rounded-full file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700"
+              />
               {form.files?.length > 0 && (
                 <p className="mt-1 text-xs opacity-70">
-                  {form.files.length} file(s): {form.files.map((f) => f.name).join(", ")}
+                  {form.files.length} file(s):{" "}
+                  {form.files.map((f) => f.name).join(", ")}
                 </p>
               )}
             </div>
             <div className="flex items-end">
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="newsletter" checked={form.newsletter} onChange={handleChange} />
+                <input
+                  type="checkbox"
+                  name="newsletter"
+                  checked={form.newsletter}
+                  onChange={handleChange}
+                />
                 <span className="text-sm">Subscribe to newsletter</span>
               </label>
             </div>
@@ -413,7 +588,11 @@ export default function Contact() {
               disabled={submitting}
               className="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white px-5 py-3 font-medium hover:bg-blue-700 disabled:opacity-60 transition shadow"
             >
-              {submitting ? <Loader2 className="animate-spin" size={18} /> : <Send size={18} />}
+              {submitting ? (
+                <Loader2 className="animate-spin" size={18} />
+              ) : (
+                <Send size={18} />
+              )}
               {submitting ? "Sending..." : "Send message"}
             </button>
             <button
@@ -426,7 +605,8 @@ export default function Contact() {
           </div>
 
           <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            By submitting, you agree to our terms and acknowledge our privacy policy.
+            By submitting, you agree to our terms and acknowledge our privacy
+            policy.
           </p>
         </motion.form>
       </div>
@@ -436,13 +616,17 @@ export default function Contact() {
         {showSummary && (
           <motion.div
             className="fixed inset-0 z-[60] flex items-center justify-center"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             aria-hidden={!showSummary}
           >
             {/* Backdrop (click → close & home) */}
             <motion.div
               className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => closeAndGoHome(false)}
             />
 
@@ -453,7 +637,12 @@ export default function Contact() {
               aria-labelledby="contact-summary-title"
               className="relative z-[61] w-[70vw] h-[70vh] max-w-6xl overflow-hidden rounded-3xl border border-neutral-200/70 dark:border-neutral-800/70 shadow-[0_20px_80px_rgba(0,0,0,0.35)] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md"
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 260, damping: 22 } }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: { type: "spring", stiffness: 260, damping: 22 },
+              }}
               exit={{ opacity: 0, y: 8, scale: 0.98 }}
             >
               {/* Header with gradient */}
@@ -466,7 +655,9 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0, transition: { delay: 0.15 } }}
                 >
                   <CheckCircle2 className="text-emerald-500" size={18} />
-                  <span className="text-sm font-medium text-gray-800 dark:text-gray-200">Submission Summary</span>
+                  <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                    Submission Summary
+                  </span>
                 </motion.div>
 
                 {/* Close (X) */}
@@ -488,16 +679,38 @@ export default function Contact() {
                   initial="hidden"
                   animate="show"
                 >
-                  <SummaryRow icon={<FiUser />} label="Name" value={form.name} variants={itemVariants} />
-                  <SummaryRow icon={<FiMail />} label="Email" value={form.email} variants={itemVariants} />
-                  <SummaryRow icon={<FiPhone />} label="Phone" value={form.phone || "—"} variants={itemVariants} />
+                  <SummaryRow
+                    icon={<FiUser />}
+                    label="Name"
+                    value={form.name}
+                    variants={itemVariants}
+                  />
+                  <SummaryRow
+                    icon={<FiMail />}
+                    label="Email"
+                    value={form.email}
+                    variants={itemVariants}
+                  />
+                  <SummaryRow
+                    icon={<FiPhone />}
+                    label="Phone"
+                    value={form.phone || "—"}
+                    variants={itemVariants}
+                  />
                   <SummaryRow
                     icon={<FiMapPin />}
                     label="Country / City"
-                    value={`${form.country}${form.city ? ` · ${form.city}` : ""}`}
+                    value={`${form.country}${
+                      form.city ? ` · ${form.city}` : ""
+                    }`}
                     variants={itemVariants}
                   />
-                  <SummaryRow icon={<FiTag />} label="Topic" value={form.topic} variants={itemVariants} />
+                  <SummaryRow
+                    icon={<FiTag />}
+                    label="Topic"
+                    value={form.topic}
+                    variants={itemVariants}
+                  />
 
                   {/* Topic Details */}
                   <motion.div
@@ -513,13 +726,27 @@ export default function Contact() {
                     </div>
                   </motion.div>
 
-                  <SummaryRow icon={<FiRadio />} label="Preferred Contact" value={form.contactMethod} variants={itemVariants} />
-                  <SummaryRow icon={<CalendarClock size={16} />} label="Best Time" value={form.bestTime} variants={itemVariants} />
+                  <SummaryRow
+                    icon={<FiRadio />}
+                    label="Preferred Contact"
+                    value={form.contactMethod}
+                    variants={itemVariants}
+                  />
+                  <SummaryRow
+                    icon={<CalendarClock size={16} />}
+                    label="Best Time"
+                    value={form.bestTime}
+                    variants={itemVariants}
+                  />
 
                   <SummaryRow
                     icon={<FiPaperclip />}
                     label="Attachments"
-                    value={form.files?.length ? form.files.map((f) => f.name).join(", ") : "None"}
+                    value={
+                      form.files?.length
+                        ? form.files.map((f) => f.name).join(", ")
+                        : "None"
+                    }
                     variants={itemVariants}
                   />
 
@@ -568,8 +795,12 @@ function SummaryRow({ icon, label, value, variants }) {
         <span className="opacity-80 text-sm">{icon}</span>
       </div>
       <div className="min-w-0">
-        <div className="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">{label}</div>
-        <div className="text-sm text-gray-900 dark:text-gray-100 break-words">{value}</div>
+        <div className="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">
+          {label}
+        </div>
+        <div className="text-sm text-gray-900 dark:text-gray-100 break-words">
+          {value}
+        </div>
       </div>
     </motion.div>
   );
