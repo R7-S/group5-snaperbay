@@ -3,9 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin,
-  Loader2, Send, X, CheckCircle2, MessageSquare, CalendarClock, Paperclip
+  Loader2, Send, X, CheckCircle2, MessageSquare, CalendarClock
 } from "lucide-react";
-import { useHistory } from "react-router-dom"; // v5 navigation
+import { useHistory } from "react-router-dom"; 
 import { FiCheck, FiX, FiMail, FiPhone, FiTag, FiMapPin, FiPaperclip, FiUser, FiRadio } from "react-icons/fi";
 
 const FORMSPREE_ENDPOINT = process.env.REACT_APP_FORMSPREE_ENDPOINT || "";
@@ -25,7 +25,7 @@ export default function Contact() {
     bestTime: "Anytime",
     newsletter: false,
     files: [],
-    // honeypot:
+    
     nickname: "",
   });
 
@@ -101,12 +101,12 @@ export default function Contact() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...form,
-            files: form.files.map((f) => f.name), // send names only
+            files: form.files.map((f) => f.name), 
           }),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       } else {
-        await new Promise((r) => setTimeout(r, 800)); // simulate success
+        await new Promise((r) => setTimeout(r, 800)); 
       }
 
       setStatus({
@@ -126,7 +126,7 @@ export default function Contact() {
     }
   };
 
-  // Focus the close button when modal opens
+  
   useEffect(() => {
     if (showSummary && modalCloseBtnRef.current) {
       modalCloseBtnRef.current.focus();
@@ -155,14 +155,14 @@ export default function Contact() {
     setStatus({ type: "", message: "" });
   };
 
-  // Close modal + go home
+  
   const closeAndGoHome = (reset = false) => {
     setShowSummary(false);
     if (reset) clearForm();
-    history.push("/"); // v5 navigate home
+    history.push("/"); 
   };
 
-  // ==== Animation presets for rows ====
+ 
   const containerVariants = {
     hidden: {},
     show: {
@@ -184,7 +184,7 @@ export default function Contact() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Contact <span className="text-blue-500">Snapper Bay</span>
+        Contact <span className="text-blue-500">SnaperBay</span>
       </motion.h1>
       <p className="text-gray-600 dark:text-gray-300 mb-10 text-center max-w-2xl">
         Questions, feedback, or collaborations? Drop us a line—we’d love to hear from you.
@@ -220,8 +220,8 @@ export default function Contact() {
               <Mail className="mt-1" size={20} />
               <div>
                 <p className="font-medium">Email</p>
-                <a href="mailto:info@snapperbay.com" className="text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline">
-                  info@snapperbay.com
+                <a href="mailto:info@SnaperBay.com" className="text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline">
+                  info@SnaperBay.com
                 </a>
               </div>
             </div>
@@ -266,7 +266,7 @@ export default function Contact() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.803349486515!2d-80.51623268450195!3d43.42384397913325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882bf2e8f19c3b77%3A0x7e02984f2d1b3f1d!2sConestoga%20College%20Doon%20Campus!5e0!3m2!1sen!2sca!4v1692119301234!5m2!1sen!2sca"
               width="100%"
               height="260"
-              style={{ border: 0 }}
+              className="border-0"
               allowFullScreen=""
               loading="lazy"
             ></iframe>

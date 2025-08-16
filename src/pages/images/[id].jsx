@@ -1,3 +1,4 @@
+// src/pages/images/[id].jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -23,10 +24,10 @@ import ScrollParallaxDecor from "../../components/ui/ScrollParallaxDecor";
 import ImageCard from "../../components/ImageCard";
 import Skeleton from "../../components/ui/Skeleton";
 
-// tiny util
+
 const fmt = (n) => new Intl.NumberFormat().format(n || 0);
 
-// count-up number (nice micro-motion)
+
 function CountUp({ value, duration = 0.6 }) {
   const [display, setDisplay] = useState(0);
   useEffect(() => {
@@ -36,17 +37,17 @@ function CountUp({ value, duration = 0.6 }) {
     let raf;
     const tick = (t) => {
       const p = Math.min(1, (t - start) / (duration * 1000));
-      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      const eased = 1 - Math.pow(1 - p, 3); 
       setDisplay(Math.round(from + (to - from) * eased));
       if (p < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [value, duration]);
-  return <>{fmt(display)}</>;
+  return <span aria-live="polite">{fmt(display)}</span>;
 }
 
-// stat chip
+
 function Stat({ icon, label, value }) {
   return (
     <motion.div
@@ -75,16 +76,16 @@ export default function ImageDetail() {
   const [copyHint, setCopyHint] = useState("Copy link");
   const [shareHint, setShareHint] = useState("Share");
 
-  // tabs
+  
   const [activeTab, setActiveTab] = useState("info");
 
-  // related sections
+  
   const [related, setRelated] = useState([]);
   const [authorPics, setAuthorPics] = useState([]);
   const [relLoading, setRelLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
 
-  // ------------ load main image
+ 
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -96,7 +97,7 @@ export default function ImageDetail() {
     };
   }, [id]);
 
-  // ------------ load related & by-author once image is ready
+  
   useEffect(() => {
     if (!image) return;
     const tagsArr = (image.tags || "")
@@ -104,7 +105,7 @@ export default function ImageDetail() {
       .map((t) => t.trim())
       .filter(Boolean);
 
-    const tagQuery = tagsArr[0] || ""; // first tag is usually most relevant
+    const tagQuery = tagsArr[0] || ""; 
     const authorQuery = (image.user || "").toString();
 
     let mounted = true;
@@ -183,7 +184,7 @@ export default function ImageDetail() {
       setShareHint("Shared!");
       setTimeout(() => setShareHint("Share"), 1200);
     } catch {
-      // user canceled — ignore
+      
     }
   };
 
@@ -198,28 +199,30 @@ export default function ImageDetail() {
 
   return (
     <PageTransition className="relative px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-      {/* ambient decor */}
+      
       <ScrollParallaxDecor />
 
-      {/* header / breadcrumb */}
+      
       <div className="mb-4 flex items-center justify-between gap-3">
         <button
           onClick={() => history.goBack()}
           className="inline-flex items-center gap-2 text-sm rounded-full px-3 py-1.5
                      bg-slate-100/70 dark:bg-white/10 hover:bg-slate-200/70 dark:hover:bg-white/15
-                     text-slate-700 dark:text-slate-200 transition"
+                     text-slate-700 dark:text-slate-200 transition
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                     focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900"
         >
           <IoArrowBackOutline /> Back
         </button>
 
         <div className="flex items-center gap-2">
-          <Button onClick={handleCopy} className="rounded-full">
+          <Button onClick={handleCopy} className="rounded-full" aria-label="Copy link">
             <IoLinkOutline className="mr-2" /> {copyHint}
           </Button>
-          <Button onClick={handleShare} className="rounded-full">
+          <Button onClick={handleShare} className="rounded-full" aria-label="Share">
             <IoShareSocialOutline className="mr-2" /> {shareHint}
           </Button>
-          <Button onClick={handleDownload} className="rounded-full">
+          <Button onClick={handleDownload} className="rounded-full" aria-label="Download image">
             <IoDownloadOutline className="mr-2" /> Download
           </Button>
           <a
@@ -228,7 +231,9 @@ export default function ImageDetail() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full px-4 py-2
                        bg-white dark:bg-slate-800 text-slate-900 dark:text-white
-                       ring-1 ring-slate-200/70 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition"
+                       ring-1 ring-slate-200/70 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                       focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900"
           >
             <IoOpenOutline /> Open on Pixabay
           </a>
@@ -300,92 +305,107 @@ export default function ImageDetail() {
               />
             </div>
 
+            {/* Accessible, persistent tab panels */}
             <div className="mt-4">
-              {activeTab === "info" && (
-                <motion.div
-                  key="tab-info"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  {tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {tags.map((t) => (
-                        <span
-                          key={t}
-                          className="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 ring-1 ring-slate-200/70 dark:ring-slate-700"
-                        >
-                          #{t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <div className="mt-4 grid grid-cols-3 gap-2">
-                    <Stat
-                      icon={<IoEyeOutline />}
-                      label="Views"
-                      value={image.views}
-                    />
-                    <Stat
-                      icon={<IoHeartOutline />}
-                      label="Likes"
-                      value={image.likes}
-                    />
-                    <Stat
-                      icon={<IoImageOutline />}
-                      label="Downloads"
-                      value={image.downloads}
-                    />
+              {/* Info panel */}
+              <motion.div
+                key="tab-info"
+                role="tabpanel"
+                id="panel-info"
+                aria-labelledby="tab-info"
+                aria-hidden={activeTab !== "info"}
+                hidden={activeTab !== "info"}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {tags.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 ring-1 ring-slate-200/70 dark:ring-slate-700"
+                      >
+                        #{t}
+                      </span>
+                    ))}
                   </div>
-                </motion.div>
-              )}
+                )}
+                <div className="mt-4 grid grid-cols-3 gap-2">
+                  <Stat
+                    icon={<IoEyeOutline />}
+                    label="Views"
+                    value={image.views}
+                  />
+                  <Stat
+                    icon={<IoHeartOutline />}
+                    label="Likes"
+                    value={image.likes}
+                  />
+                  <Stat
+                    icon={<IoImageOutline />}
+                    label="Downloads"
+                    value={image.downloads}
+                  />
+                </div>
+              </motion.div>
 
-              {activeTab === "meta" && (
-                <motion.div
-                  key="tab-meta"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-sm leading-6 opacity-90"
-                >
-                  <div>Type: {image.type || "Photo"}</div>
-                  {image.imageWidth && image.imageHeight && (
-                    <div>
-                      Dimensions: {fmt(image.imageWidth)} ×{" "}
-                      {fmt(image.imageHeight)} px
-                    </div>
-                  )}
-                  {image.size && <div>Size: {fmt(image.size)} KB</div>}
-                  <div>ID: {image.id}</div>
-                </motion.div>
-              )}
+              {/* Meta panel */}
+              <motion.div
+                key="tab-meta"
+                role="tabpanel"
+                id="panel-meta"
+                aria-labelledby="tab-meta"
+                aria-hidden={activeTab !== "meta"}
+                hidden={activeTab !== "meta"}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm leading-6 opacity-90"
+              >
+                <div>Type: {image.type || "Photo"}</div>
+                {image.imageWidth && image.imageHeight && (
+                  <div>
+                    Dimensions: {fmt(image.imageWidth)} ×{" "}
+                    {fmt(image.imageHeight)} px
+                  </div>
+                )}
+                {image.size && <div>Size: {fmt(image.size)} KB</div>}
+                <div>ID: {image.id}</div>
+              </motion.div>
 
-              {activeTab === "license" && (
-                <motion.div
-                  key="tab-license"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-sm leading-6 opacity-90"
+              {/* License panel */}
+              <motion.div
+                key="tab-license"
+                role="tabpanel"
+                id="panel-license"
+                aria-labelledby="tab-license"
+                aria-hidden={activeTab !== "license"}
+                hidden={activeTab !== "license"}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm leading-6 opacity-90"
+              >
+                <p>
+                  Images are served from Pixabay. Please review the Pixabay
+                  license and usage guidelines on the image page for
+                  up-to-date terms.
+                </p>
+                <a
+                  href={detailURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-2 underline text-blue-600
+                             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                             focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900"
                 >
-                  <p>
-                    Images are served from Pixabay. Please review the Pixabay
-                    license and usage guidelines on the image page for
-                    up-to-date terms.
-                  </p>
-                  <a
-                    href={detailURL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-2 underline text-blue-600"
-                  >
-                    View on Pixabay
-                  </a>
-                </motion.div>
-              )}
+                  View on Pixabay
+                </a>
+              </motion.div>
             </div>
           </div>
         </motion.aside>
       </div>
 
-      {/* --- More like this --- */}
+      
       <section className="mt-10">
         <SectionHeading
           title="More like this"
@@ -412,7 +432,11 @@ export default function ImageDetail() {
           >
             {related.map((img) => (
               <li key={img.id} className="mb-4 break-inside-avoid">
-                <Link to={`/images/${img.id}`}>
+                <Link
+                  to={`/images/${img.id}`}
+                  className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                             focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900 rounded-lg"
+                >
                   <ImageCard
                     src={img.webformatURL}
                     alt={img.tags}
@@ -455,7 +479,11 @@ export default function ImageDetail() {
           >
             {authorPics.map((img) => (
               <li key={img.id} className="mb-4 break-inside-avoid">
-                <Link to={`/images/${img.id}`}>
+                <Link
+                  to={`/images/${img.id}`}
+                  className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                             focus-visible:ring-blue-500 dark:focus-visible:ring-offset-slate-900 rounded-lg"
+                >
                   <ImageCard
                     src={img.webformatURL}
                     alt={img.tags}

@@ -12,7 +12,7 @@ export default function CategoryChips({ items = [], onPick }) {
                      hover:-translate-y-[1px] transition transform-gpu"
           aria-label={`Search ${c.label}`}
         >
-          {/* icon OR emoji fallback */}
+          
           <span className="text-lg leading-none">{c.icon ?? c.emoji}</span>
           <span>{c.label}</span>
         </button>

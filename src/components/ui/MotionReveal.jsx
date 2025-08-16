@@ -10,7 +10,7 @@ export default function MotionReveal({
   once = true,
   amount = 0.15,
   margin = "-8% 0px",
-  forceOnMount = false, // <-- NEW
+  forceOnMount = false, 
 }) {
   const M = motion[as] || motion.div;
   const ref = useRef(null);
@@ -19,7 +19,7 @@ export default function MotionReveal({
   const [show, setShow] = useState(false);
   const [reduced, setReduced] = useState(false);
 
-  // Respect reduced motion
+  
   useEffect(() => {
     try {
       const mq = window.matchMedia?.("(prefers-reduced-motion: reduce)");
@@ -27,12 +27,12 @@ export default function MotionReveal({
     } catch {}
   }, []);
 
-  // Reveal when actually in view
+ 
   useEffect(() => {
     if (inView) setShow(true);
   }, [inView]);
 
-  // Force show on mount and when returning from bfcache (back/forward)
+  
   useEffect(() => {
     if (!forceOnMount) return;
     setShow(true);

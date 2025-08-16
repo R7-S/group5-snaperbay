@@ -9,7 +9,7 @@ export default function FeatureCard({ icon, title, desc }) {
           className="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-full
                         bg-white/80 dark:bg-slate-800/80 ring-1 ring-slate-200/70 dark:ring-slate-700"
         >
-          {/* works with either emoji string or a React element */}
+          
           <span className="text-lg leading-none">
             {typeof icon === "string" ? icon : icon}
           </span>

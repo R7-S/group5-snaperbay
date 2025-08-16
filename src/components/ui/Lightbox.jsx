@@ -1,6 +1,22 @@
+// src/components/ui/Lightbox.jsx
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Lightbox({ open, onClose, children, layoutId }) {
+  const dialogRef = useRef(null);
+
+  
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    window.addEventListener("keydown", onKey);
+    
+    dialogRef.current?.focus();
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
   return (
     <AnimatePresence>
       {open && (
@@ -10,14 +26,20 @@ export default function Lightbox({ open, onClose, children, layoutId }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
+          aria-hidden="true"
         >
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image preview"
+            ref={dialogRef}
+            tabIndex={-1}
             className="absolute inset-0 flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
             onDragEnd={(_, info) => {
-              if (info.offset.y > 120) onClose();
+              if (info.offset.y > 120) onClose?.();
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{
@@ -27,7 +49,6 @@ export default function Lightbox({ open, onClose, children, layoutId }) {
             }}
             exit={{ y: 10, opacity: 0 }}
           >
-            {/* the magic wrapper: when layoutId matches the card, it morphs */}
             <motion.div layoutId={layoutId} className="max-w-5xl w-full">
               {children}
             </motion.div>

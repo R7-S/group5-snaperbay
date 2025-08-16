@@ -7,7 +7,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 
-/* Observe html.dark + OS */
+
 function useDarkModeStatus() {
   const getIsDark = () => {
     const root = document.documentElement;
@@ -45,27 +45,27 @@ function useDarkModeStatus() {
   return isDark;
 }
 
-/* math helper */
+
 function useDrift(t, phase, amp = 40, speed = 0.05) {
   return useTransform(t, (v) => Math.sin(v * speed + phase) * amp);
 }
 
 export default function FramerLikeBackground({
   blur = 80,
-  intensity = 0.9, // global opacity multiplier
-  variant = "auto", // "auto" | "light" | "dark"
+  intensity = 0.9, 
+  variant = "auto", 
   className = "",
-  fadeAfter = 0.62, // where light-mode fades out (0–1 of viewport height)
+  fadeAfter = 0.62, 
 }) {
   const reduce = useReducedMotion();
   const isDark = useDarkModeStatus();
   const mode = variant === "auto" ? (isDark ? "dark" : "light") : variant;
 
-  // time driver
+ 
   const t = useMotionValue(0);
   useAnimationFrame((time) => t.set(time / 1000));
 
-  // gentle drifts
+  
   const x1 = useDrift(t, 0.2, 40, 0.045);
   const y1 = useDrift(t, 1.1, 55, 0.05);
   const x2 = useDrift(t, 2.1, 45, 0.04);
@@ -96,12 +96,12 @@ export default function FramerLikeBackground({
           rgba(16,185,129,0.85), rgba(16,185,129,0.35) 55%, transparent 70%)`,
         intens: intensity,
         blend: "normal",
-        mask: undefined, // no fade; covers full viewport
+        mask: undefined, 
       };
     }
-    // LIGHT — airy, additive, and fades after the hero
+    
     return {
-      canvas: "transparent", // keep page white
+      canvas: "transparent", 
       vignette:
         "radial-gradient(120% 120% at 50% -10%, transparent, rgba(0,0,0,0.06))",
       noiseOpacity: 0.02,
@@ -117,9 +117,9 @@ export default function FramerLikeBackground({
         rgba(244,114,182,0.28), rgba(217,70,239,0.18) 45%, transparent 70%)`,
       ring: `radial-gradient(closest-side,
         rgba(45,212,191,0.30), rgba(16,185,129,0.18) 55%, transparent 70%)`,
-      intens: Math.min(0.7, intensity), // softer
-      blend: "screen", // additive glow
-      // fade bottom so sections below hero stay bright
+      intens: Math.min(0.7, intensity), 
+      blend: "screen", 
+      
       mask: `linear-gradient(to bottom,
         black 0%,
         black ${Math.round(fadeAfter * 100)}%,
@@ -137,7 +137,7 @@ export default function FramerLikeBackground({
           : undefined
       }
     >
-      {/* base canvas (dark only; light uses page bg) */}
+      
       {palette.canvas !== "transparent" && (
         <div
           className="absolute inset-0"
@@ -145,7 +145,7 @@ export default function FramerLikeBackground({
         />
       )}
 
-      {/* big planet */}
+      
       <motion.div
         style={dyn({ x: x1, y: y1, rotate: rot })}
         className="absolute -left-[22vw] -bottom-[26vh] w-[95vw] h-[95vw] rounded-full"
@@ -173,7 +173,7 @@ export default function FramerLikeBackground({
         />
       </motion.div>
 
-      {/* fuchsia halo */}
+      
       <motion.div
         style={dyn({ x: x2, y: y2 })}
         className="absolute -right-[18vw] -top-[14vh] w-[70vw] h-[70vw] rounded-full"
@@ -189,7 +189,7 @@ export default function FramerLikeBackground({
         />
       </motion.div>
 
-      {/* cyan/teal ring */}
+      
       <motion.div
         style={dyn({ x: x3, y: y3 })}
         className="absolute left-1/2 top-[36%] -translate-x-1/2 w-[85vw] h-[85vw]"
@@ -208,7 +208,7 @@ export default function FramerLikeBackground({
         />
       </motion.div>
 
-      {/* gentle vignette + grain */}
+      
       <div
         className="absolute inset-0"
         style={{ background: palette.vignette }}

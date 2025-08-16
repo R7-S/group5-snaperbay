@@ -5,7 +5,7 @@ export default function BlurImage({
   src,
   alt,
   className = "",
-  fit = "cover", // "cover" | "contain"
+  fit = "cover", 
   showLoader = true,
 }) {
   const [loaded, setLoaded] = useState(false);

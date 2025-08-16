@@ -24,8 +24,8 @@ async function request(params) {
   return data.hits;
 }
 
-export async function fetchPopularImages() {
-  return request({ order: "popular" });
+export async function fetchLatestImages() {
+  return request({ order: "latest" });
 }
 
 export async function fetchImagesByQuery(query) {
